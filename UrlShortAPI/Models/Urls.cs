@@ -10,7 +10,7 @@ namespace UrlShortAPI.Models
         public string? Id { get; set; }
 
         [BsonElement("newUrl")]
-        public required string NewUrl { get; set; }
+        public string? NewUrl { get; set; }
 
         [BsonElement("redirectUrl")]
         public required string RedirectUrl { get; set; }

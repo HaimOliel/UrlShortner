@@ -22,4 +22,24 @@ public class UrlService
 
     public async Task CreateAsync(Url newUrl) =>
         await _urls.InsertOneAsync(newUrl);
+
+    private static string GenerateRandomShortCode(int length = 6)
+    {
+        const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+    public async Task<string> GenerateUniqueShortCodeAsync()
+    {
+        string code;
+        do
+        {
+            code = GenerateRandomShortCode();
+        }
+        while (await _urls.Find(u => u.NewUrl == code).AnyAsync());
+
+        return code;
+    }
+
 }

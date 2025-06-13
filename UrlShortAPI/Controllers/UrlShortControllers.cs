@@ -25,6 +25,9 @@ namespace MyApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUrl([FromBody] Url newUrl)
         {
+            // Generate a unique short URL
+            newUrl.NewUrl = await _urlService.GenerateUniqueShortCodeAsync();
+
             await _urlService.CreateAsync(newUrl);
             return CreatedAtAction(nameof(GetUrlByNewUrl), new { name = newUrl.NewUrl }, newUrl);
         }
