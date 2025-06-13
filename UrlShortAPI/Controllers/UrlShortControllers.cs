@@ -1,36 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
 using UrlShortAPI.Models;
-
+using UrlShortAPI.Services;
 namespace MyApi.Controllers
 {
     [ApiController]
-    [Route("")]
+    [Route("/")]
     public class ShortController : ControllerBase
     {
-        private static List<Url> urlList = new();
+        private readonly UrlService _urlService;
 
-        [HttpGet("{name}")]
-        public IActionResult GetUrlByNewUrl(string name)
+        public ShortController(UrlService urlService)
         {
-            // if (name == "haim")
-            //     return Redirect("https://google.com");
-            // else
-            //     return Redirect("https://youtube.com");
-
-            var url = urlList.FirstOrDefault(u => u.NewUrl == name);
+            _urlService = urlService;
+        }
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetUrlByNewUrl(string name)
+        {
+            var url = await _urlService.GetByShortUrlAsync(name);
             if (url == null)
-            {
                 return NotFound();
-            }
 
             return Redirect(url.RedirectUrl);
         }
-
         [HttpPost]
-        public IActionResult CreateUrl([FromBody] Url newUrl)
+        public async Task<IActionResult> CreateUrl([FromBody] Url newUrl)
         {
-            newUrl.Id = urlList.Count + 1;
-            urlList.Add(newUrl);
+            await _urlService.CreateAsync(newUrl);
             return CreatedAtAction(nameof(GetUrlByNewUrl), new { name = newUrl.NewUrl }, newUrl);
         }
     }

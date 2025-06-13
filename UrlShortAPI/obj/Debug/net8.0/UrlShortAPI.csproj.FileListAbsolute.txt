@@ -31,3 +31,9 @@ D:\Desktop\UrlShortner\UrlShortAPI\obj\Debug\net8.0\refint\UrlShortAPI.dll
 D:\Desktop\UrlShortner\UrlShortAPI\obj\Debug\net8.0\UrlShortAPI.pdb
 D:\Desktop\UrlShortner\UrlShortAPI\obj\Debug\net8.0\UrlShortAPI.genruntimeconfig.cache
 D:\Desktop\UrlShortner\UrlShortAPI\obj\Debug\net8.0\ref\UrlShortAPI.dll
+D:\Desktop\UrlShortner\UrlShortAPI\bin\Debug\net8.0\DnsClient.dll
+D:\Desktop\UrlShortner\UrlShortAPI\bin\Debug\net8.0\MongoDB.Bson.dll
+D:\Desktop\UrlShortner\UrlShortAPI\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\Desktop\UrlShortner\UrlShortAPI\bin\Debug\net8.0\SharpCompress.dll
+D:\Desktop\UrlShortner\UrlShortAPI\bin\Debug\net8.0\Snappier.dll
+D:\Desktop\UrlShortner\UrlShortAPI\bin\Debug\net8.0\ZstdSharp.dll
