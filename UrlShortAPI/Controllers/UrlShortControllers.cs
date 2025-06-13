@@ -14,9 +14,9 @@ namespace MyApi.Controllers
             _urlService = urlService;
         }
         [HttpGet("{name}")]
-        public async Task<IActionResult> GetUrlByNewUrl(string name)
+        public async Task<IActionResult> GetUrlByNewUrl(string newUrl)
         {
-            var url = await _urlService.GetByShortUrlAsync(name);
+            var url = await _urlService.GetByShortUrlAsync(newUrl);
             if (url == null)
                 return NotFound();
 
@@ -25,11 +25,21 @@ namespace MyApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUrl([FromBody] Url newUrl)
         {
-            // Generate a unique short URL
+            // Check if the redirect URL already exists
+            var existing = await _urlService.GetByRedirectUrlAsync(newUrl.RedirectUrl);
+            if (existing != null)
+            {
+                return Ok(existing); // Return existing short URL
+            }
+
+            // Generate a unique short code
             newUrl.NewUrl = await _urlService.GenerateUniqueShortCodeAsync();
 
+            // Save to DB
             await _urlService.CreateAsync(newUrl);
+
             return CreatedAtAction(nameof(GetUrlByNewUrl), new { name = newUrl.NewUrl }, newUrl);
         }
+
     }
 }

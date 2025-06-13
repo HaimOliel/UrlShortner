@@ -41,5 +41,9 @@ public class UrlService
 
         return code;
     }
+    public async Task<Url?> GetByRedirectUrlAsync(string redirectUrl)
+    {
+        return await _urls.Find(u => u.RedirectUrl == redirectUrl).FirstOrDefaultAsync();
+    }
 
 }
