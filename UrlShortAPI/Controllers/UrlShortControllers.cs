@@ -13,7 +13,7 @@ namespace MyApi.Controllers
         {
             _urlService = urlService;
         }
-        [HttpGet("{name}")]
+        [HttpGet("{newUrl}")]
         public async Task<IActionResult> GetUrlByNewUrl(string newUrl)
         {
             var url = await _urlService.GetByShortUrlAsync(newUrl);
@@ -38,7 +38,7 @@ namespace MyApi.Controllers
             // Save to DB
             await _urlService.CreateAsync(newUrl);
 
-            return CreatedAtAction(nameof(GetUrlByNewUrl), new { name = newUrl.NewUrl }, newUrl);
+            return CreatedAtAction(nameof(GetUrlByNewUrl), new { newUrl = newUrl.NewUrl }, newUrl);
         }
 
     }

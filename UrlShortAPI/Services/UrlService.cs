@@ -7,6 +7,11 @@ public class UrlService
 {
     private readonly IMongoCollection<Url> _urls;
 
+    public UrlService(IMongoDatabase database)
+    {
+        _urls = database.GetCollection<Url>("Urls");
+    }
+
     public UrlService(IConfiguration config)
     {
         var client = new MongoClient(config.GetConnectionString("MongoDb"));

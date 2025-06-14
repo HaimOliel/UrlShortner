@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build: .
+    container_name: urlshort-api
+    ports:
+      - "8080:80"
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_CONNECTIONSTRING=mongodb://mongo:27017/UrlShortenerDb
+      - ASPNETCORE_ENVIRONMENT=Development
+
+volumes:
+  mongo-data:
