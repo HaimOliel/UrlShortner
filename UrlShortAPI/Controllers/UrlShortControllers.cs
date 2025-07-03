@@ -13,6 +13,13 @@ namespace MyApi.Controllers
         {
             _urlService = urlService;
         }
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var urls = await _urlService.GetAllAsync();
+            return Ok(urls);
+        }
+
         [HttpGet("{newUrl}")]
         public async Task<IActionResult> GetUrlByNewUrl(string newUrl)
         {
@@ -40,6 +47,5 @@ namespace MyApi.Controllers
 
             return CreatedAtAction(nameof(GetUrlByNewUrl), new { newUrl = newUrl.NewUrl }, newUrl);
         }
-
     }
 }

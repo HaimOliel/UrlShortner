@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UrlShortAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c090b076a7c05409326706cdeab6fdefdbeaeb6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d5b0de4ce2105519d136486867a66795208e6af")]
 [assembly: System.Reflection.AssemblyProductAttribute("UrlShortAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UrlShortAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
